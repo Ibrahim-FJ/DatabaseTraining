@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/ibrah/Desktop/Tuwaiq/Android/DatabaseTraining/app/src/main/res/layout/activity_main.xml" value="0.2074074074074074" />
+        <entry key="..\:/Users/ibrah/Desktop/Tuwaiq/Android/DatabaseTraining/app/src/main/res/layout/fragment_add_student.xml" value="0.2171875" />
         <entry key="..\:/Users/ibrah/Desktop/Tuwaiq/Android/DatabaseTraining/app/src/main/res/layout/fragment_list_student.xml" value="0.2171875" />
         <entry key="..\:/Users/ibrah/Desktop/Tuwaiq/Android/DatabaseTraining/app/src/main/res/layout/list_student_item.xml" value="0.2171875" />
       </map>

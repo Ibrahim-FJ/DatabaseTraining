@@ -1,11 +1,15 @@
-package com.example.databasetraining
+package com.example.databasetraining.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import com.example.databasetraining.R
+import com.example.databasetraining.StudentApplication
 import com.example.databasetraining.adapter.StudentListAdapter
 import com.example.databasetraining.databinding.FragmentListStudentBinding
 import com.example.databasetraining.viewmodel.StudentViewModel
@@ -31,7 +35,10 @@ class ListStudentFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = StudentListAdapter()
+        val adapter = StudentListAdapter{
+            it.studentName
+            Toast.makeText(requireContext(), it.studentName, Toast.LENGTH_SHORT).show()
+        }
         binding?.studentRecyclerView?.adapter = adapter
         studentViewModel.allStudents.observe(viewLifecycleOwner){
             it.let {
@@ -39,6 +46,12 @@ class ListStudentFragment : Fragment() {
             }
         }
 
+        binding?.addStudentFloatingbuttonListFragment?.setOnClickListener {
+            findNavController().navigate(R.id.action_listStudentFragment_to_addStudentFragment)
+
+        }
+
     }
+
 
 }

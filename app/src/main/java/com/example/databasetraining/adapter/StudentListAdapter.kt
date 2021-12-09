@@ -1,5 +1,6 @@
 package com.example.databasetraining.adapter
 
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -8,14 +9,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.databasetraining.database.Student
 import com.example.databasetraining.databinding.ListStudentItemBinding
 
-class StudentListAdapter: ListAdapter<Student, StudentListAdapter.StudentListViewHolder>(DiffCallback) {
-
+class StudentListAdapter(private val onItemClicked: (Student) -> Unit): ListAdapter<Student, StudentListAdapter.StudentListViewHolder>(DiffCallback) {
 
     class StudentListViewHolder(private var binding: ListStudentItemBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(student: Student){
             binding.apply {
-                name.text = student.studentName
-                age.text = student.studentAge.toString()
+                nameTextviewListItem.text = student.studentName
+                ageTextviewListItem.text = student.studentAge.toString()
 
             }
 
@@ -29,6 +29,9 @@ class StudentListAdapter: ListAdapter<Student, StudentListAdapter.StudentListVie
     override fun onBindViewHolder(holder: StudentListViewHolder, position: Int) {
         val currentStudent = getItem(position)
         holder.bind(currentStudent)
+        holder.itemView.setOnClickListener{
+            onItemClicked(currentStudent)
+        }
     }
 
 
