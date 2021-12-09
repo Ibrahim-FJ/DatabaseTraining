@@ -21,9 +21,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding?.root)
 
-        binding?.button?.setOnClickListener {
-            studentViewModel.addNewStudent(binding?.name?.text.toString(), Integer.parseInt(binding?.age?.text.toString()))
-        }
+
 
     }
 

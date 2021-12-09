@@ -6,14 +6,14 @@ import com.example.databasetraining.database.StudentDao
 import kotlinx.coroutines.launch
 
 class StudentViewModel(private val studentDao: StudentDao): ViewModel() {
-
+    val allStudents: LiveData<List<Student>> = studentDao.getAllStudent().asLiveData()
 
 
    private fun insertStudent(newStudent: Student){
             viewModelScope.launch {
                 studentDao.insert(newStudent)
             }
-    }
+   }
 
 
     // from activity
@@ -22,10 +22,7 @@ class StudentViewModel(private val studentDao: StudentDao): ViewModel() {
     }
 
 
-
 }
-
-
 
 
 class StudentViewModelFactory(private val studentDao: StudentDao): ViewModelProvider.Factory{
