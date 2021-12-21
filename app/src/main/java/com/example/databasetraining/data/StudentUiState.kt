@@ -1,3 +1,3 @@
 package com.example.databasetraining.data
 
-data class StudentUiState (val name: String, val age: String)
+data class StudentUiState (val name: String = "", val age: String = "")

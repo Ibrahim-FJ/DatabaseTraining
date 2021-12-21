@@ -5,21 +5,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.databasetraining.R
-import com.example.databasetraining.StudentApplication
 import com.example.databasetraining.adapter.StudentListAdapter
 import com.example.databasetraining.databinding.FragmentListStudentBinding
 import com.example.databasetraining.viewmodels.StudentViewModel
-import com.example.databasetraining.viewmodels.StudentViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 
 class ListStudentFragment : Fragment() {
     private var binding: FragmentListStudentBinding? = null
-    private val studentViewModel: StudentViewModel by activityViewModels {
-        StudentViewModelFactory((activity?.application as StudentApplication).database.studentDao())
-    }
+    private val studentViewModel: StudentViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,

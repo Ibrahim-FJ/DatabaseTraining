@@ -23,6 +23,6 @@ interface StudentDao {
     fun getStudent(id: Int): Flow<Student>
 
     @Query("DELETE FROM student WHERE id = :id")
-     fun deleteStudent(id: Int)
+    suspend fun deleteStudent(id: Int)
 
 }

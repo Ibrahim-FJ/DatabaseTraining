@@ -1,24 +1,25 @@
 package com.example.databasetraining.viewmodels
 
 import androidx.lifecycle.*
+import com.example.databasetraining.data.StudentRepository
+import com.example.databasetraining.data.StudentUiState
 import com.example.databasetraining.database.Student
 import com.example.databasetraining.database.StudentDao
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class StudentViewModel(private val studentDao: StudentDao) : ViewModel() {
-    val allStudents: LiveData<List<Student>> = studentDao.getAllStudent().asLiveData()
+@HiltViewModel
+class StudentViewModel @Inject constructor(private val repository: StudentRepository) : ViewModel() {
+    val allStudents: LiveData<List<Student>> = repository.getAllItems().asLiveData()
 
 
     private fun insertStudent(newStudent: Student) {
         viewModelScope.launch {
-            studentDao.insertStudent(newStudent)
-        }
-    }
-
-
-    private fun updateStudent(student: Student) {
-        viewModelScope.launch {
-            studentDao.updateStudent(student)
+           repository.insertItem(newStudent)
         }
     }
 
@@ -28,39 +29,23 @@ class StudentViewModel(private val studentDao: StudentDao) : ViewModel() {
         insertStudent(Student(studentName = studentNamed, studentAge = studentAged))
     }
 
-    fun updateStudent(id: Int, studentName: String, studentAge: Int) {
-        updateStudent(Student(id = id, studentName = studentName, studentAge = studentAge))
-    }
 
-    fun retrieveStudent(id: Int): LiveData<Student> {
-        return studentDao.getStudent(id).asLiveData()
-    }
-
-    private fun deleteStudent(){
+    fun delete(id: Int){
         viewModelScope.launch {
+            repository.delete(id)
 
         }
     }
 
-    fun deleteStudent(id: Int){
-        studentDao.deleteStudent(id)
-//        viewModelScope.launch {
-//
-//        }
+
+    fun retrieve(id: Int): LiveData<Student>{
+
+       return repository.retrieve(id)
     }
 
-}
 
 
-class StudentViewModelFactory(private val studentDao: StudentDao) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(StudentViewModel::class.java)) {
-            @Suppress("UNCHECKED_CAST")
-            return StudentViewModel(studentDao) as T
-        }
 
-        throw IllegalArgumentException("Unknown ViewModel class")
-    }
 
 
 }

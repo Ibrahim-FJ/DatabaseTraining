@@ -6,19 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.databasetraining.R
-import com.example.databasetraining.StudentApplication
 import com.example.databasetraining.databinding.FragmentAddStudentBinding
 import com.example.databasetraining.viewmodels.StudentViewModel
-import com.example.databasetraining.viewmodels.StudentViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class AddStudentFragment : Fragment() {
     private var binding: FragmentAddStudentBinding? = null
-    private val studentViewModel: StudentViewModel by activityViewModels {
-        StudentViewModelFactory((activity?.application as StudentApplication).database.studentDao())
-    }
+    private val studentViewModel: StudentViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
