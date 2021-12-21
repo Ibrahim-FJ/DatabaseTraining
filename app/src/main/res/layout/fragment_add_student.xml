@@ -8,7 +8,7 @@
 
 
     <EditText
-        android:id="@+id/name_edittext_add_student_fragment"
+        android:id="@+id/student_name_fragment_add_student"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="98dp"
@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/age_edittext_add_student_fragment"
+        android:id="@+id/student_age_fragment_add_student"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="62dp"
@@ -29,18 +29,18 @@
         android:hint="add age"
         android:inputType="number"
         android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="@+id/name_edittext_add_student_fragment"
-        app:layout_constraintStart_toStartOf="@+id/name_edittext_add_student_fragment"
-        app:layout_constraintTop_toBottomOf="@+id/name_edittext_add_student_fragment" />
+        app:layout_constraintEnd_toEndOf="@+id/student_name_fragment_add_student"
+        app:layout_constraintStart_toStartOf="@+id/student_name_fragment_add_student"
+        app:layout_constraintTop_toBottomOf="@+id/student_name_fragment_add_student" />
 
     <Button
-        android:id="@+id/save_button_add_student_fragment"
+        android:id="@+id/save_action_fragment_add_student"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="293dp"
         android:text="Save"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/age_edittext_add_student_fragment"
-        app:layout_constraintStart_toStartOf="@+id/age_edittext_add_student_fragment"
-        app:layout_constraintTop_toBottomOf="@+id/age_edittext_add_student_fragment" />
+        app:layout_constraintEnd_toEndOf="@+id/student_age_fragment_add_student"
+        app:layout_constraintStart_toStartOf="@+id/student_age_fragment_add_student"
+        app:layout_constraintTop_toBottomOf="@+id/student_age_fragment_add_student" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,15 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.databasetraining.R
 import com.example.databasetraining.StudentApplication
 import com.example.databasetraining.adapter.StudentListAdapter
 import com.example.databasetraining.databinding.FragmentListStudentBinding
-import com.example.databasetraining.viewmodel.StudentViewModel
-import com.example.databasetraining.viewmodel.StudentViewModelFactory
+import com.example.databasetraining.viewmodels.StudentViewModel
+import com.example.databasetraining.viewmodels.StudentViewModelFactory
 
 
 class ListStudentFragment : Fragment() {
@@ -36,8 +35,9 @@ class ListStudentFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val adapter = StudentListAdapter{
-            it.studentName
-            Toast.makeText(requireContext(), it.studentName, Toast.LENGTH_SHORT).show()
+            val action = ListStudentFragmentDirections.actionListStudentFragmentToDetailsFragment(studentId = it.id)
+            findNavController().navigate(action)
+
         }
         binding?.studentRecyclerView?.adapter = adapter
         studentViewModel.allStudents.observe(viewLifecycleOwner){

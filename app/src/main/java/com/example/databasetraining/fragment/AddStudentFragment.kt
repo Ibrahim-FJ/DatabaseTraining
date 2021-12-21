@@ -10,8 +10,8 @@ import androidx.navigation.fragment.findNavController
 import com.example.databasetraining.R
 import com.example.databasetraining.StudentApplication
 import com.example.databasetraining.databinding.FragmentAddStudentBinding
-import com.example.databasetraining.viewmodel.StudentViewModel
-import com.example.databasetraining.viewmodel.StudentViewModelFactory
+import com.example.databasetraining.viewmodels.StudentViewModel
+import com.example.databasetraining.viewmodels.StudentViewModelFactory
 
 
 class AddStudentFragment : Fragment() {
@@ -32,11 +32,13 @@ class AddStudentFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding?.saveButtonAddStudentFragment?.setOnClickListener {
+        binding?.saveActionFragmentAddStudent?.setOnClickListener {
             studentViewModel.addNewStudent(
-                binding?.nameEdittextAddStudentFragment?.text.toString(),
-                Integer.parseInt(binding?.ageEdittextAddStudentFragment?.text.toString())
+                binding?.studentNameFragmentAddStudent?.text.toString(),
+                Integer.parseInt(binding?.studentAgeFragmentAddStudent?.text.toString())
             )
+
+    //        studentViewModel.updateStudent(1,  "Heldddlo", 32)
 
             findNavController().navigate(R.id.action_addStudentFragment_to_listStudentFragment)
 
