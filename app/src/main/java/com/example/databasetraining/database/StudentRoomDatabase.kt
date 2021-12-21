@@ -14,6 +14,7 @@ abstract class StudentRoomDatabase : RoomDatabase() {
     companion object {
         @Volatile
         private var INSTANCE: StudentRoomDatabase? = null
+
         fun getDatabase(context: Context): StudentRoomDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(

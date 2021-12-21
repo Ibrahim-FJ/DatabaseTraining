@@ -2,13 +2,12 @@ package com.example.databasetraining
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
-import com.example.databasetraining.databinding.ActivityMainBinding
-import com.example.databasetraining.viewmodel.StudentViewModel
-import com.example.databasetraining.viewmodel.StudentViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
     private lateinit var navController: NavController

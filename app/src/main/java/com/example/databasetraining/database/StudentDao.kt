@@ -1,9 +1,6 @@
 package com.example.databasetraining.database
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 
 
@@ -11,10 +8,22 @@ import kotlinx.coroutines.flow.Flow
 interface StudentDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(student: Student)
+    suspend fun insertStudent(student: Student)
+
+    @Update
+    suspend fun updateStudent(student: Student)
+
+
 
 
     @Query("SELECT * FROM student ORDER BY id Asc")
     fun getAllStudent(): Flow<List<Student>>
+
+
+    @Query("SELECT * FROM student WHERE id = :id")
+    fun getStudent(id: Int): Flow<Student>
+
+    @Query("DELETE FROM student WHERE id = :id")
+    suspend fun deleteStudent(id: Int)
 
 }

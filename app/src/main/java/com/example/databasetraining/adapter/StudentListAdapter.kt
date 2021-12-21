@@ -3,6 +3,7 @@ package com.example.databasetraining.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -14,8 +15,8 @@ class StudentListAdapter(private val onItemClicked: (Student) -> Unit): ListAdap
     class StudentListViewHolder(private var binding: ListStudentItemBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(student: Student){
             binding.apply {
-                nameTextviewListItem.text = student.studentName
-                ageTextviewListItem.text = student.studentAge.toString()
+                studentNameListItem.text = student.studentName
+                studentAgeListItem.text = student.studentAge.toString()
 
             }
 

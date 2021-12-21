@@ -6,19 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.databasetraining.R
-import com.example.databasetraining.StudentApplication
 import com.example.databasetraining.databinding.FragmentAddStudentBinding
-import com.example.databasetraining.viewmodel.StudentViewModel
-import com.example.databasetraining.viewmodel.StudentViewModelFactory
+import com.example.databasetraining.viewmodels.StudentViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class AddStudentFragment : Fragment() {
     private var binding: FragmentAddStudentBinding? = null
-    private val studentViewModel: StudentViewModel by activityViewModels {
-        StudentViewModelFactory((activity?.application as StudentApplication).database.studentDao())
-    }
+    private val studentViewModel: StudentViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,11 +30,13 @@ class AddStudentFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding?.saveButtonAddStudentFragment?.setOnClickListener {
+        binding?.saveActionFragmentAddStudent?.setOnClickListener {
             studentViewModel.addNewStudent(
-                binding?.nameEdittextAddStudentFragment?.text.toString(),
-                Integer.parseInt(binding?.ageEdittextAddStudentFragment?.text.toString())
+                binding?.studentNameFragmentAddStudent?.text.toString(),
+                Integer.parseInt(binding?.studentAgeFragmentAddStudent?.text.toString())
             )
+
+    //        studentViewModel.updateStudent(1,  "Heldddlo", 32)
 
             findNavController().navigate(R.id.action_addStudentFragment_to_listStudentFragment)
 
